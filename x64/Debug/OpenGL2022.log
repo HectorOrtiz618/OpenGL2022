@@ -1,0 +1,3 @@
+﻿  Shader.cpp
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(85,39): warning C4267: '=': conversion from 'size_t' to 'GLint', possible loss of data
+  OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Debug\OpenGL2022.exe
