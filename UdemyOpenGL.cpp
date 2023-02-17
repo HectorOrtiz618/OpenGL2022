@@ -17,7 +17,10 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "Texture.h"
 #include "Light.h"
+#include "DirectionalLight.h"
 #include "Material.h"
+#include "CommonValues.h"
+#include "PointLight.h"
 
 //Vertex Shader
 std::vector<Mesh*> meshList;
@@ -30,7 +33,8 @@ GLfloat deltaTime = 0.0f;
 GLfloat lastTime = 0.0f;
 Texture dirtTexture("textures/dirt.png");  
 Texture brickTexture("textures/brick.png");
-Light mainLight;
+DirectionalLight mainLight;
+PointLight pointLight[MAX_POINT_LIGHTS];
 Material shinyMaterial;
 Material dullMaterial;
 static const char* vShader = "shaders/shader.vert";
@@ -107,7 +111,7 @@ int main()
     Camera camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.f,0.f, 5.0f, 0.5f);
     glm::mat4 projection = glm::perspective(45.0f, mainWindow.GetBufferWidth() / mainWindow.GetBufferHeight(), 0.1f, 100.0f);
 
-    GLuint uniformModel = 0, uniformProjection = 0, uniformView = 0, uniformAmbiantIntensity = 0, uniformAmbiantColor = 0, uniformDirection = 0, uniformDiffuseIntesity = 0, uniformEyePosition = 0, uniformSpecularIntensity = 0, uniformShininess = 0;
+    GLuint uniformModel = 0, uniformProjection = 0, uniformView = 0, uniformEyePosition = 0, uniformSpecularIntensity = 0, uniformShininess = 0;
   
     brickTexture.LoadTexture();
     dirtTexture.LoadTexture();
@@ -115,7 +119,10 @@ int main()
     shinyMaterial = Material(1.0f,32);
     dullMaterial = Material(0.3f, 4);
 
-    mainLight = Light(1.0f, 1.0f, 1.0f, 0.2f, 2.0f, -1.0f, -2.0f, 0.3f);
+    mainLight = DirectionalLight(1.0f, 1.0f, 1.0f, 0.2f, 2.0f, -1.0f, -2.0f, 0.3f);
+    unsigned int pointLightCount = 0;
+    pointLight[0] = PointLight(0.0f, 1.0f, 0.0f, 0.1f, 1.0f, -4.0f, 0.0f, 0.0f, 0.3f, 0.2f, 0.1f);
+    pointLightCount++;
     while (!mainWindow.GetShouldClose())
     {
         GLfloat now = glfwGetTime();
@@ -133,15 +140,14 @@ int main()
         uniformModel = shaderList[0].GetModelLocation();
         uniformProjection = shaderList[0].GetProjectionLocation();
         uniformView = shaderList[0].GetViewLocation();
-        uniformAmbiantIntensity = shaderList[0].GetAmbiantIntensity();
-        uniformAmbiantColor = shaderList[0].GetAmbiantColor();
-        uniformDirection = shaderList[0].GetDirectionLocation();
-        uniformDiffuseIntesity = shaderList[0].GetDiffuseIntensity();
+
         uniformEyePosition = shaderList[0].GetEyePosition();
         uniformSpecularIntensity = shaderList[0].GetSpecularIntensity();
         uniformShininess = shaderList[0].GetShininessLocation();
 
-        mainLight.UseLight(uniformAmbiantIntensity,uniformAmbiantColor,uniformDiffuseIntesity,uniformDirection);
+        shaderList[0].SetDirectionalLight(&mainLight);
+        shaderList[0].SetPointLight(pointLight, pointLightCount);
+        //mainLight.UseLight(uniformAmbiantIntensity,uniformAmbiantColor,uniformDiffuseIntesity,uniformDirection);
         //glm matrices MUIST be initilized as glm::mat4 model(1.0f); OR YOU WILL GET GARBAGE TRANSFORM DATA
         glm::mat4 model(1.0f);
         

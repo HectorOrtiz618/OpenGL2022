@@ -1,11 +1,12 @@
-﻿  UdemyOpenGL.cpp
+﻿  PointLight.cpp
+  UdemyOpenGL.cpp
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(23,41): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(24,42): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(58,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(121,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(62,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(128,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   Generating code
-  2 of 539 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  4 of 552 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     8 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
