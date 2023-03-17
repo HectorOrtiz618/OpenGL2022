@@ -21,6 +21,11 @@ glm::vec3 Camera::GetCameraPosition() const
 	return position;
 }
 
+glm::vec3 Camera::GetCameraDirection() const
+{
+	return glm::normalize(front);
+}
+
 Camera::Camera()
 {
 

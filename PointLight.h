@@ -2,7 +2,7 @@
 #include "Light.h"
 class PointLight : public Light
 {
-private:
+protected:
 	glm::vec3 position;
 	GLfloat constant, linear, exponent;
 	//we need the equation 1/(ax^2+bx+c) where a = constant, b equals linear, and c equals constant because of how light actually drops off

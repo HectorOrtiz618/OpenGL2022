@@ -8,13 +8,16 @@ DirectionalLight::DirectionalLight()
 	diffuseIntensity = 1.0f;
 }
 
-DirectionalLight::DirectionalLight(GLfloat red, GLfloat green, GLfloat blue, GLfloat aIntensity, GLfloat xDir, GLfloat yDir, GLfloat zDir, GLfloat dIntensity)
+DirectionalLight::DirectionalLight(GLfloat shadowWidth, GLfloat shadowHeight, GLfloat red, GLfloat green, GLfloat blue, GLfloat aIntensity, GLfloat xDir, GLfloat yDir, GLfloat zDir, GLfloat dIntensity):Light(shadowWidth,shadowHeight,red,green,blue,aIntensity,dIntensity)
 {
-	color = glm::vec3(red, green, blue);
-	ambiantIntensity = aIntensity;
 
 	direction = glm::vec3(xDir, yDir, zDir);
-	diffuseIntensity = dIntensity;
+	lightProj = glm::ortho(-20.0f, 20.0f, -5.0f, 5.0f, 0.1f, 100.f);
+}
+
+glm::mat4 DirectionalLight::CalculateLightTransform()
+{
+	return lightProj * glm::lookAt(-direction, glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void DirectionalLight::UseLight(GLuint ambiantIntensityLocation, GLuint ambiantColorLocation, GLuint diffuseIntensityLocation, GLuint directionLocation)
@@ -28,4 +31,6 @@ void DirectionalLight::UseLight(GLuint ambiantIntensityLocation, GLuint ambiantC
 
 DirectionalLight::~DirectionalLight()
 {
+	//delete shadowMap;
+	//shadowMap = nullptr;
 }

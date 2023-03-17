@@ -1,3 +1,8 @@
-﻿  Shader.cpp
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(85,39): warning C4267: '=': conversion from 'size_t' to 'GLint', possible loss of data
+﻿  DirectionalLight.cpp
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\DirectionalLight.cpp(15,31): warning C4244: 'argument': conversion from 'GLfloat' to 'GLuint', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\DirectionalLight.cpp(15,18): warning C4244: 'argument': conversion from 'GLfloat' to 'GLuint', possible loss of data
+  Light.cpp
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Light.cpp(14,31): warning C4244: 'argument': conversion from 'GLfloat' to 'GLuint', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Light.cpp(14,18): warning C4244: 'argument': conversion from 'GLfloat' to 'GLuint', possible loss of data
+  Generating Code...
   OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Debug\OpenGL2022.exe
