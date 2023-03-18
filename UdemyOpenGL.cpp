@@ -165,7 +165,7 @@ void RenderScene()
     meshList[2]->RenderMesh();
 
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(-0.2f, -2.0f, 5.0f));
+    model = glm::translate(model, glm::vec3(-2.f, 1.0f, 5.0f));
     model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));
     glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
     dullMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
@@ -250,7 +250,7 @@ int main()
     
 
     mainLight = DirectionalLight
-    (2048, 2048,
+    (4096, 4096,
         1.0f, 1.0f, 1.0f,
         0.1f, 
         0.0f,
