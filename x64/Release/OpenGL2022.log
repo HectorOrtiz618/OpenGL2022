@@ -1,12 +1,8 @@
-﻿  UdemyOpenGL.cpp
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(23,41): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(24,42): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(75,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(267,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+﻿  SpotLight.cpp
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\PointLight.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating code
-  1 of 817 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
+  231 of 882 functions (26.2%) were compiled, the rest were copied from previous compilation.
+    69 functions were new in current compilation
+    72 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Release\OpenGL2022.exe

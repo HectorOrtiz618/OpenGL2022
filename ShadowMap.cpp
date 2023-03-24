@@ -39,7 +39,7 @@ bool ShadowMap::Init(GLuint width, GLuint height)
 		return false;
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	printf("Shadowmap initilized\n");
+	printf("ShadowMap initilized\n");
 
 	return true;
 }
