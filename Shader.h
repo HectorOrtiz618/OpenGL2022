@@ -52,13 +52,13 @@ private:
 
 	GLuint shaderID, uniformProjection, uniformModel,uniformView,uniformEyePosition, uniformSpecularIntensity, uniformShininess, uniformPointLightCount, uniformSpotLightCount, uniformTexture, uniformDirectionalLightTransform, uniformDirectionalShadowMap, uniformOmniLightPos, uniformFarPlane;
 	GLuint uniformLightMatrices[6];
-	void CompileShader(const char* vertexCode, const char* fragmentCode, const char* geoCode, bool useGeoCode = false);
+	void CompileShader(const char* vertexCode, const char* fragmentCode, const char* geoCode = "", bool useGeoCode = false);
 	void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType);
 public:
 	Shader();
 	
 	void CreateFromString(const char* vertexCode, const char* fragmentCode);
-	void CreateFromFile(const char* vertexLocation, const char* fragmentLocation, const char* geoLocation = "", bool useGeoCode = false);
+	void CreateFromFile(const char* vertexLocation, const char* fragmentLocation, const char* geoLocation = "\n", bool useGeoCode = false);
 	std::string ReadFromFile(const char* fileLocation);
 	
 	GLuint GetProjectionLocation() const;

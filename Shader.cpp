@@ -18,14 +18,18 @@ void Shader::CreateFromFile(const char* vertexLocation, const char* fragmentLoca
 {
     std::string vertexString = ReadFromFile(vertexLocation);
     std::string fragmentString = ReadFromFile(fragmentLocation);
-    std::string geomentryString = ReadFromFile(geoLocation);
+    std::string geomentryString;
+    if (useGeoCode)
+    {
+        geomentryString = ReadFromFile(geoLocation);
+    }
     if (useGeoCode)
     {
         CompileShader(vertexString.c_str(), fragmentString.c_str(), geomentryString.c_str(), true);
     }
     else
     {
-        CompileShader(vertexString.c_str(), fragmentString.c_str(), "", false);
+        CompileShader(vertexString.c_str(), fragmentString.c_str());
     }
 }
 std::string Shader::ReadFromFile(const char* fileLocation)
@@ -73,14 +77,15 @@ void Shader::CompileShader(const char* vertexCode, const char* fragmentCode, con
     if (!result)
     {
         glGetProgramInfoLog(shaderID, sizeof(eLog), NULL, eLog);
-        printf("Error Linking Program: %s", &eLog);
+        printf("Error Linking Program: %s \n", &eLog);
+        printf("\n");
     }
     glValidateProgram(shaderID);
     glGetProgramiv(shaderID, GL_VALIDATE_STATUS, &result);
     if (!result)
     {
         glGetProgramInfoLog(shaderID, sizeof(eLog), NULL, eLog);
-        printf("Error Validating Program: %s", &eLog);
+        printf("Error Validating Program: %s \n", &eLog);
     }
     uniformModel = glGetUniformLocation(shaderID, "model");
     uniformProjection = glGetUniformLocation(shaderID, "projection");
@@ -188,7 +193,7 @@ void Shader::AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderT
     if (!result)
     {
         glGetProgramInfoLog(shaderID, sizeof(eLog), NULL, eLog);
-        printf("Error compiling %d shader: %s", shaderType, &eLog);
+        printf("Error compiling %d shader: %s \n", shaderType, &eLog);
         return;
     }
     glAttachShader(theProgram, theShader);

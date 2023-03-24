@@ -1,8 +1,44 @@
-﻿  SpotLight.cpp
+﻿  Shader.cpp
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\PointLight.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(101,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(101,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(104,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(104,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(107,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(107,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(110,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(110,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(113,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(113,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(116,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(116,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(119,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(119,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(127,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(127,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(130,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(130,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(133,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(133,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(136,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(136,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(139,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(139,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(142,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(142,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(145,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(145,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(148,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(148,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(151,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(151,44): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(166,48): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(166,48): message : consider using '%zd' in the format string
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(179,39): warning C4267: '=': conversion from 'size_t' to 'GLint', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(256,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(269,23): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  231 of 882 functions (26.2%) were compiled, the rest were copied from previous compilation.
-    69 functions were new in current compilation
-    72 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 882 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Release\OpenGL2022.exe
