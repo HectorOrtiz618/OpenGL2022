@@ -49,6 +49,12 @@ private:
 		GLuint uniformDirection;
 		GLuint uniformEdge;
 	}uniformSpotLight[MAX_SPOT_LIGHTS];
+	struct
+	{
+		GLuint shadowMap;
+		GLuint farPlane;
+
+	}uniformOmniShadowMap[MAX_SPOT_LIGHTS+MAX_POINT_LIGHTS];
 
 	GLuint shaderID, uniformProjection, uniformModel,uniformView,uniformEyePosition, uniformSpecularIntensity, uniformShininess, uniformPointLightCount, uniformSpotLightCount, uniformTexture, uniformDirectionalLightTransform, uniformDirectionalShadowMap, uniformOmniLightPos, uniformFarPlane;
 	GLuint uniformLightMatrices[6];
@@ -60,6 +66,7 @@ public:
 	void CreateFromString(const char* vertexCode, const char* fragmentCode);
 	void CreateFromFile(const char* vertexLocation, const char* fragmentLocation, const char* geoLocation = "\n", bool useGeoCode = false);
 	std::string ReadFromFile(const char* fileLocation);
+	void ValidateProgram();
 	
 	GLuint GetProjectionLocation() const;
 	GLuint GetModelLocation() const;
@@ -71,12 +78,12 @@ public:
 	GLuint GetEyePosition()const;
 	GLuint GetSpecularIntensity()const;
 	GLuint GetShininessLocation()const;
-	GLuint GetOmniLightPos()const;
-	GLuint GetFarPlane()const;
+	GLuint GetOmniLightPosLocation()const;
+	GLuint GetFarPlaneLocation()const;
 	
 	void SetDirectionalLight(DirectionalLight* dLight);
-	void SetPointLight(PointLight* pLight, unsigned int pCount);
-	void SetSpotLights(SpotLight* sLight, unsigned int sCount);
+	void SetPointLight(PointLight* pLight, unsigned int pCount, unsigned int textureUnit, unsigned int offset);
+	void SetSpotLights(SpotLight* sLight, unsigned int sCount, unsigned int textureUnit, unsigned int offset);
 	void SetTexture(GLuint textureUnit);
 	void SetDirectionalShadowMap(GLuint textureUnit);
 	void SetDirectionalLightTransform(glm::mat4 *lTransform);

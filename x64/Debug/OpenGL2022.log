@@ -1,40 +1,8 @@
-﻿  Shader.cpp
+﻿  UdemyOpenGL.cpp
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\PointLight.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(105,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(105,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(108,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(108,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(111,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(111,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(114,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(114,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(117,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(117,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(120,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(120,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(123,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(123,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(131,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(131,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(134,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(134,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(137,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(137,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(140,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(140,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(143,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(143,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(146,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(146,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(149,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(149,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(152,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(152,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(155,44): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(155,44): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(170,48): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(170,48): message : consider using '%zd' in the format string
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(183,39): warning C4267: '=': conversion from 'size_t' to 'GLint', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(260,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\Shader.cpp(273,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(23,41): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(24,42): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(76,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(297,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Debug\OpenGL2022.exe

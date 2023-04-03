@@ -1,12 +1,12 @@
 #version 330
-in vec4 FragPos;
+in vec4 fragPos;
 
 uniform vec3 lightPos;
 uniform float farPlane;
 
 void main()
 {
-	float distance = length(FragPos.xyz - lightPos);
+	float distance = length(fragPos.xyz - lightPos);
 	distance = distance/farPlane;
 	gl_FragDepth = distance;
 }

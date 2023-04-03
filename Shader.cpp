@@ -54,6 +54,19 @@ std::string Shader::ReadFromFile(const char* fileLocation)
     fileStream.close();
     return content;
 }
+void Shader::ValidateProgram()
+{
+    GLint result;
+    GLchar eLog[1024] = { 0 };
+    glValidateProgram(shaderID);
+    glGetProgramiv(shaderID, GL_VALIDATE_STATUS, &result);
+    if (result != GL_TRUE)
+    {
+        glGetProgramInfoLog(shaderID, sizeof(eLog), NULL, eLog);
+        printf("Error  %d validating program: '%s'\n", result,eLog);
+        return;
+    }
+}
 void Shader::CompileShader(const char* vertexCode, const char* fragmentCode, const char* geoCode, bool useGeoCode)
 {
     shaderID = glCreateProgram();
@@ -170,6 +183,16 @@ void Shader::CompileShader(const char* vertexCode, const char* fragmentCode, con
             snprintf(locBuff, sizeof(locBuff), "lightMatrices[%d}", i);
             uniformLightMatrices[i] = glGetUniformLocation(shaderID, locBuff);
         }
+        for (size_t i = 0; i < MAX_POINT_LIGHTS + MAX_SPOT_LIGHTS; i++)
+        {
+            char locBuff[100] = { '\0' };
+
+            snprintf(locBuff, sizeof(locBuff), "omniShadowMaps[%d}.shadowMap", i);
+            uniformOmniShadowMap[i].shadowMap = glGetUniformLocation(shaderID, locBuff);
+
+            snprintf(locBuff, sizeof(locBuff), "omniShadowMaps[%d}.farPlane", i);
+            uniformOmniShadowMap[i].farPlane = glGetUniformLocation(shaderID, locBuff);
+        }
     }
 
 }
@@ -187,13 +210,13 @@ void Shader::AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderT
     glCompileShader(theShader);
 
     GLint result = 0;
-    GLchar eLog[1024] = { 0 };
+    GLchar eLog[1024] = { '\0'};
 
     glGetShaderiv(theShader, GL_COMPILE_STATUS, &result);
     if (!result)
     {
-        glGetProgramInfoLog(shaderID, sizeof(eLog), NULL, eLog);
-        printf("Error compiling %d shader: %s \n", shaderType, &eLog);
+        glGetShaderInfoLog(theShader, sizeof(eLog), NULL, eLog);
+        printf("Error compiling %d shader: '%s' \n", shaderType, eLog);
         return;
     }
     glAttachShader(theProgram, theShader);
@@ -238,11 +261,11 @@ GLuint Shader::GetShininessLocation() const
 {
     return uniformShininess;
 }
-GLuint Shader::GetOmniLightPos() const
+GLuint Shader::GetOmniLightPosLocation() const
 {
     return uniformOmniLightPos;
 }
-GLuint Shader::GetFarPlane() const
+GLuint Shader::GetFarPlaneLocation() const
 {
     return uniformFarPlane;
 }
@@ -250,7 +273,7 @@ void Shader::SetDirectionalLight(DirectionalLight* dLight)
 {
     dLight->UseLight(uniformDirectionalLight.uniformAmbiantIntensity, uniformDirectionalLight.uniformAmbiantColor, uniformDirectionalLight.uniformDiffuseIntensity, uniformDirectionalLight.uniformDirection);
 }
-void Shader::SetPointLight(PointLight* pLight, unsigned int pCount)
+void Shader::SetPointLight(PointLight* pLight, unsigned int pCount, unsigned int textureUnit, unsigned int offset)
 {
     if (pCount > MAX_POINT_LIGHTS)
     {
@@ -261,9 +284,13 @@ void Shader::SetPointLight(PointLight* pLight, unsigned int pCount)
     {
         pLight[i].UseLight(uniformPointLight[i].uniformAmbiantIntensity, uniformPointLight[i].uniformAmbiantColor, uniformPointLight[i].uniformDiffuseIntensity, uniformPointLight[i].uniformPosition,
                             uniformPointLight[i].uniformConstant, uniformPointLight[i].uniformLinear, uniformPointLight[i].uniformExponent);
+
+        pLight[i].GetShadowMap()->Read(GL_TEXTURE0+textureUnit + i);
+        glUniform1i(uniformOmniShadowMap[i + offset].shadowMap, textureUnit + i);
+        glUniform1f(uniformOmniShadowMap[i + offset].farPlane, pLight[i].GetFarPlane());
     }
 }
-void Shader::SetSpotLights(SpotLight* sLight, unsigned int sCount)
+void Shader::SetSpotLights(SpotLight* sLight, unsigned int sCount, unsigned int textureUnit, unsigned int offset)
 {
     if (sCount > MAX_POINT_LIGHTS)
     {
@@ -274,6 +301,9 @@ void Shader::SetSpotLights(SpotLight* sLight, unsigned int sCount)
     {
         sLight[i].UseLight(uniformSpotLight[i].uniformAmbiantIntensity, uniformSpotLight[i].uniformAmbiantColor, uniformSpotLight[i].uniformDiffuseIntensity, uniformSpotLight[i].uniformPosition, uniformSpotLight[i].uniformDirection,
             uniformSpotLight[i].uniformConstant, uniformSpotLight[i].uniformLinear, uniformSpotLight[i].uniformExponent, uniformSpotLight[i].uniformEdge);
+        sLight[i].GetShadowMap()->Read(GL_TEXTURE0 + textureUnit + i);
+        glUniform1i(uniformOmniShadowMap[i + offset].shadowMap, textureUnit + i);
+        glUniform1f(uniformOmniShadowMap[i + offset].farPlane, sLight[i].GetFarPlane());
     }
 }
 void Shader::SetTexture(GLuint textureUnit)
