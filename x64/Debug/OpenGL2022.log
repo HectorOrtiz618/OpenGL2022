@@ -3,6 +3,6 @@ C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\PointLight.h(4,10): warning C4
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(23,41): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\GLWindow.h(24,42): warning C4244: 'return': conversion from 'const GLint' to 'GLfloat', possible loss of data
 C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(76,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(297,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(78,58): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\hec12\source\repos\OpenGL2022\OpenGL2022\UdemyOpenGL.cpp(311,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   OpenGL2022.vcxproj -> C:\Users\hec12\source\repos\OpenGL2022\x64\Debug\OpenGL2022.exe

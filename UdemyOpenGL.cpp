@@ -24,6 +24,7 @@
 #include "PointLight.h"
 #include "assimp/Importer.hpp"
 #include "Model.h"
+#include "Skybox.h"
 
 //Vertex Shader
 GLuint uniformModel = 0, uniformProjection = 0, uniformView = 0, uniformEyePosition = 0, uniformSpecularIntensity = 0, uniformShininess = 0,uniformDirectionalLightTransform = 0,uniformOmniLightPos = 0,uniformFarPlane = 0;
@@ -32,7 +33,7 @@ Camera camera;
 glm::mat4 projection;
 std::vector<Shader>shaderList;
 Shader directionalShadowShader;
-Shader omniShadowShader;
+Shader *omniShadowShader;
 bool bDirection = true;
 float triOffset = 0.f;
 float triMaxOffset = 0.7f;
@@ -46,6 +47,7 @@ DirectionalLight mainLight;
 PointLight pointLight[MAX_POINT_LIGHTS];
 unsigned int pointLightCount = 0;
 SpotLight spotLight[MAX_SPOT_LIGHTS];
+Skybox *skybox;
 unsigned int spotLightCount = 0;
 Material shinyMaterial;
 Material dullMaterial;
@@ -132,7 +134,8 @@ void CreateShaders()
     shaderList.push_back(*shader1);
     //directionalShadowShader = new Shader();
     directionalShadowShader.CreateFromFile("shaders/directional_shadow_map.vert", "shaders/directional_shadow_map.frag");
-    omniShadowShader.CreateFromFile("shaders/omni_shadow_map.vert", "shaders/omni_shadow_map.frag","shaders/omni_shadow_map.geo",true);
+    omniShadowShader = new Shader();
+    omniShadowShader->CreateFromFile("shaders/omni_shadow_map.vert", "shaders/omni_shadow_map.frag","shaders/omni_shadow_map.geo",true);
 }
 void RenderScene()
 {
@@ -185,7 +188,7 @@ void DirectionalShadowMapPass(DirectionalLight* light)
     glm::mat4 lightTransform = mainLight.CalculateLightTransform();
     directionalShadowShader.SetDirectionalLightTransform(&lightTransform);
 
-    directionalShadowShader.ValidateProgram();
+    directionalShadowShader.ValidateProgram("directionalShadowShader");
     RenderScene();
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -193,21 +196,20 @@ void DirectionalShadowMapPass(DirectionalLight* light)
 }
 void OmniShadowMapPass(PointLight* light)
 {
-
+    omniShadowShader->UseShader();
     glViewport(0, 0, light->GetShadowMap()->GetShadowWidth(), light->GetShadowMap()->GetShadowHeight());
     
-    omniShadowShader.UseShader();
-    uniformModel = omniShadowShader.GetModelLocation();
-    uniformOmniLightPos = omniShadowShader.GetOmniLightPosLocation();
-    uniformFarPlane = omniShadowShader.GetFarPlaneLocation();
     light->GetShadowMap()->Write();
     glClear(GL_DEPTH_BUFFER_BIT);
-
+    uniformModel = omniShadowShader->GetModelLocation();
+    uniformOmniLightPos = omniShadowShader->GetOmniLightPosLocation();
+    uniformFarPlane = omniShadowShader->GetFarPlaneLocation();
 
     glUniform3f(uniformOmniLightPos, light->GetPosition().x, light->GetPosition().y, light->GetPosition().z);
     glUniform1f(uniformFarPlane, light->GetFarPlane());
-    omniShadowShader.SetLightMatrices(light->CalculateLightTransform());
-    omniShadowShader.ValidateProgram();
+    std::vector<glm::mat4> lightMatrices = light->CalculateLightTransform();
+    omniShadowShader->SetLightMatrices(lightMatrices);
+    omniShadowShader->ValidateProgram("omniShadowShader");
 
     RenderScene();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -215,6 +217,13 @@ void OmniShadowMapPass(PointLight* light)
 }
 void RenderPass(glm::mat4 projectionMatrix, glm::mat4 viewMatrix)
 {
+    glViewport(0, 0, 1366, 768);
+
+    //clear window
+    glClearColor(0.f, 0.f, 0.f, 1.f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    skybox->DrawSkybox(viewMatrix, projectionMatrix);
+
     shaderList[0].UseShader();
 
     uniformModel = shaderList[0].GetModelLocation();
@@ -225,14 +234,10 @@ void RenderPass(glm::mat4 projectionMatrix, glm::mat4 viewMatrix)
     uniformSpecularIntensity = shaderList[0].GetSpecularIntensity();
     uniformShininess = shaderList[0].GetShininessLocation();
 
-    glViewport(0, 0, 1366, 768);
-
-    //clear window
-    glClearColor(0.f, 0.f, 0.f, 1.f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
     glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+    glUniform3f(uniformEyePosition, camera.GetCameraPosition().x, camera.GetCameraPosition().y, camera.GetCameraPosition().z);
     
     
     shaderList[0].SetDirectionalLight(&mainLight);
@@ -249,12 +254,12 @@ void RenderPass(glm::mat4 projectionMatrix, glm::mat4 viewMatrix)
     lowerLight.y -= 0.3f;
 
     spotLight[0].SetFlash(lowerLight, camera.GetCameraDirection());
-    shaderList[0].ValidateProgram();
+    shaderList[0].ValidateProgram("shaderList[0]");
     RenderScene();
 
 
     //glm matrices MUIST be initilized as glm::mat4 model(1.0f); OR YOU WILL GET GARBAGE TRANSFORM DATA
-   //DirectionalShadowMapPass(&mainLight);
+   DirectionalShadowMapPass(&mainLight);
 
 }
 int main()
@@ -283,15 +288,24 @@ int main()
     (4096.f, 4096.f,
         1.0f, 1.0f, 1.0f,
         0.1f, 
-        0.0f,
-        -15.0f, -10.0f, 
+        -10.0f, -12.0f, 18.5f,
         0.3f);
-    pointLight[0] = PointLight(2048.f,2048.f,0.01f,200.f,0.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.0f, 0.f, 0.0f, 0.3f, 0.2f, 0.1f);
+    pointLight[0] = PointLight(2048.f,2048.f,0.01f,200.f,0.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.0f, 5.f, 0.0f, 0.3f, 0.2f, 0.1f);
     pointLightCount++;
     spotLight[0] = SpotLight(2048.f,2048.f,1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f,1.0f,0.0f,0.f,20.f);
     spotLightCount++;
     spotLight[1] = SpotLight(2048.f, 2048.f,1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, -1.5f, 0.0f, -100.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 20.f);
     spotLightCount++;
+
+    std::vector<std::string> skyboxFaces;
+    skyboxFaces.push_back("textures/cupertin-lake_rt.tga");
+    skyboxFaces.push_back("textures/cupertin-lake_lf.tga");
+    skyboxFaces.push_back("textures/cupertin-lake_up.tga");
+    skyboxFaces.push_back("textures/cupertin-lake_dn.tga");
+    skyboxFaces.push_back("textures/cupertin-lake_bk.tga");
+    skyboxFaces.push_back("textures/cupertin-lake_ft.tga");
+
+    skybox = new Skybox(skyboxFaces);
     while (!mainWindow.GetShouldClose())
     {
         GLfloat now = glfwGetTime();
@@ -322,5 +336,7 @@ int main()
         mainWindow.swapBuffers();
 
     }
+    delete skybox;
+    delete omniShadowShader;
     return 0;
 }

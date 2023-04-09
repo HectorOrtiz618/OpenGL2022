@@ -92,7 +92,7 @@ float CalcOmniShadowFactor(PointLight light, int shadowIndex)
 	shadow /= float(samples);
 	return shadow;
 }
-float CalcDirectionalShadowFactor(vec4 directionalLightSpacePos)
+float CalcDirectionalShadowFactor()
   {
 	  vec3 projCoords = directionalLightSpacePos.xyz / directionalLightSpacePos.w;
 	  projCoords = projCoords * 0.5 + 0.5;
@@ -149,7 +149,7 @@ vec4 CalcLightByDirection(Light light, vec3 direction, float shadowFactor)
 }
  vec4 CalcDirectionalLight()
  {
-	  float shadowFactor = CalcDirectionalShadowFactor(directionalLightSpacePos);
+	  float shadowFactor = CalcDirectionalShadowFactor();
 	  return CalcLightByDirection(directionalLight.base,directionalLight.direction,shadowFactor);
  }
  vec4 CalcPointLight(PointLight pLight, int shadowIndex)

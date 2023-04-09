@@ -51,8 +51,8 @@ private:
 	}uniformSpotLight[MAX_SPOT_LIGHTS];
 	struct
 	{
-		GLuint shadowMap;
-		GLuint farPlane;
+		GLuint uniformShadowMap;
+		GLuint uniformFarPlane;
 
 	}uniformOmniShadowMap[MAX_SPOT_LIGHTS+MAX_POINT_LIGHTS];
 
@@ -66,7 +66,7 @@ public:
 	void CreateFromString(const char* vertexCode, const char* fragmentCode);
 	void CreateFromFile(const char* vertexLocation, const char* fragmentLocation, const char* geoLocation = "\n", bool useGeoCode = false);
 	std::string ReadFromFile(const char* fileLocation);
-	void ValidateProgram();
+	void ValidateProgram(const char* fileName);
 	
 	GLuint GetProjectionLocation() const;
 	GLuint GetModelLocation() const;
